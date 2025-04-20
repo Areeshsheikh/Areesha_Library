@@ -166,12 +166,12 @@ def search_books(search_term, search_by):
             results.append(book)
         elif search_by == "Genre" and search_term in book['genre'].lower():
             results.append(book)
-    st.session_state.search_reults = results
+    st.session_state.search_results = results
 
 #calculate library states
 def get_library_stats():
     total_books = len(st.session_state.library)
-    read_books =sum(1 for book in st.session_state.libary if book ['read status'])
+    read_books =sum(1 for book in st.session_state.library if book ['read status'])
     percent_read = (read_books / total_books * 100) if total_books > 0 else 0
 
     genres = {}
@@ -246,14 +246,14 @@ def create_visulations(stats):
         st.plotly_chart(fig_genres, use_container_width=True)
     if stats['decades']:
         decades_df = pd.DataFrame({
-            'Decades':[f"{decade}s" for decade in stats['decades'].key()],
+            'Decades':[f"{decade}s" for decade in stats['decades'].keys()],
             'Count': list(stats['decades'].values())
         })
         fig_decades = px.line(
             decades_df,x='Decade',
             y='Count',
             markers=True,
-            line_sape='spline'
+            line_shape='spline'
         )
         fig_decades.update_layout(
             title_text = 'Book by publication decade',
@@ -308,7 +308,7 @@ if st.session_state.current_view == "add":
         if submit_button and title and author:
             add_book(title,author,publication_year,genre,read_bool)
 
-    if st.sessin_state.book_added:
+    if st.session_state.book_added:
         st.markdown("<div class='success-message'>Book added successfully!</div>", unsafe_allow_html=True)
         st.balloons()
         st.session_state.book_added = False
@@ -335,7 +335,7 @@ elif st.session_state.current_view == "library":
                 col1, col2 = st.columns(2)
                 with col1:
                     if st.button(f"Remove",key=f"remove_{i}", use_container_width=True):
-                        if remove_book{i}:
+                        if remove_book(i):
                             st.rerun()
                 with col2:
                     new_status = not book['read_status']
@@ -400,7 +400,7 @@ elif st.session_state.current_view == "stats":
             for author, count in top_authors.items():
                 st.markdown(f"**{author}**: {count} book{'s' if count > 1 else ''}") 
 st.markdown("---")
-st.markdown("copyright @ 2025 Areesha Sheikh Personal Library Manager", unsaf_allow_html=True)
+st.markdown("copyright @ 2025 Areesha Sheikh Personal Library Manager", unsafe_allow_html=True)
 
 
 
