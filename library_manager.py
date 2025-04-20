@@ -266,7 +266,7 @@ def create_visulations(stats):
         #load library
 load_library()
 st.sidebar.markdown("<h1 style='text-align: center;'> Navigation</h1", unsafe_allow_html=True)
-lottie_book = load_lottieur("https://assests9.lottieflies.com/temp/1f20|_aKAfIn.json")
+lottie_book = load_lottieur("https://assests9.lottieflies.com/temp/1f20_aKAfIn.json")
 if lottie_book:
     with st.sidebar:
         st_lottie(lottie_book, height=200, key='book_animation')
@@ -392,7 +392,7 @@ elif st.session_state.current_view == "stats":
             st.metric("Book Read", stats['read_books'])
         with col3:
             st.metric("Percentage Read", f"{stats['percent_read'] :.1f}%")
-        create_visulations()
+        create_visulations(stats)
 
         if stats['authors']:
             st.markdown("<h3> Top Authors</h3>", unsafe_allow_html=True)
