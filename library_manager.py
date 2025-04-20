@@ -100,8 +100,8 @@ if 'library' not in st.session_state:
     st.session_state.library =[]
 if 'search_results' not in st.session_state:
     st.session_state.search_results =[]
-if 'add_book' not in st.session_state:
-    st.session_state.add_book = False
+if 'book_added' not in st.session_state:
+    st.session_state.book_added = False
 if 'book_remove' not in st.session_state:
     st.session_state.book_remove = False
 if 'current_view' not in st.session_state:
@@ -141,7 +141,7 @@ def add_book(title,author,publication_year,genre,read_status):
     }
     st.session_state.library.append(book)
     save_library()
-    st.session_state.add_book = True
+    st.session_state.book_added = True
     time.sleep(0.5) #animation delay
 
 #remove a book to library
@@ -308,10 +308,10 @@ if st.session_state.current_view == "add":
         if submit_button and title and author:
             add_book(title,author,publication_year,genre,read_bool)
 
-    if st.session_state.add_book:
+    if st.session_state.book_added:
         st.markdown("<div class='success-message'>Book added successfully!</div>", unsafe_allow_html=True)
         st.balloons()
-        st.session_state.add_book = False
+        st.session_state.book_added = False
 elif st.session_state.current_view == "library":
     st.markdown("<h2 class = 'sub-header'> Your Library </h2>", unsafe_allow_html=True)
 
