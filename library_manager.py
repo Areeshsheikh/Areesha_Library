@@ -12,7 +12,7 @@ import requests
 
 #set page configuration
 st.set_page_config(
-    page_title="personal \library Management system",
+    page_title="personal library Management system",
     page_icon="📚",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -189,11 +189,11 @@ def get_library_stats():
         else:
             authors[book['author']] =1
         #count decades
-        decades = (book['publication_year'] //10) *10
-        if decades in decades:
-            decades[decades] +=1
+        decades_val = (book['publication_year'] //10) *10
+        if decades_val in decades:
+            decades[decades_val] +=1
         else:
-            decades[decades] =1
+            decades[decades_val] =1
 
     #sort by count
     genres = dict(sorted(genres.items(), key=lambda x: x[1], reverse=True))
@@ -211,7 +211,7 @@ def get_library_stats():
 
 def create_visulations(stats):
     if stats['total_books'] > 0:
-        fig_read_status = go.figure(data=[go.pie(
+        fig_read_status = go.Figure(data=[go.pie(
             labels=['Read' , 'Unread'],
             values=[stats['read_books'], stats['total_books'] - stats['read_books']],
             hole=.4,
@@ -235,7 +235,7 @@ def create_visulations(stats):
             x='Genre',
             y='Count',
             color='Count',
-            color_continues_scale = px.colors.sequential.Blues
+            color_continuous_scale = px.colors.sequential.Blues
         )
         fig_genres.update_layout(
             title_text = 'Book by publication genres',
@@ -250,7 +250,7 @@ def create_visulations(stats):
             'Count': list(stats['decades'].values())
         })
         fig_decades = px.line(
-            decades_df,x='Decade',
+            decades_df,x='Decades',
             y='Count',
             markers=True,
             line_shape='spline'
@@ -283,7 +283,7 @@ elif nav_options == "Search Books":
 elif nav_options == "Library Statistics":
     st.session_state.current_view = "stats"
 
-st.markdown("<h1 class='main-header'> Personal Library Manager <h1/>", unsafe_allow_html=True)
+st.markdown("<h1 class='main-header'> Personal Library Manager </h1>", unsafe_allow_html=True)
 if st.session_state.current_view == "add":
     st.markdown("<h2 class= 'sub-header'> Add a new book </h2>", unsafe_allow_html=True)
 
@@ -301,7 +301,7 @@ if st.session_state.current_view == "add":
             genre = st.selectbox("Genre",[
                 "Fantasy", "Science Fiction", "Mystery", "Thriller", "Romance", "Historical Fiction", "Horror", "Non-Fiction", "Biography", "Adventure", "Literary Fiction", "Magical Realism", "Crime", "religion", "Technology", "Other"
             ])
-            read_status = st.radio("Read status",["Read", "Unread"], horizontal=True)
+            read_status = st.radio("Read_status",["Read", "Unread"], horizontal=True)
             read_bool = read_status == "Read"
         submit_button = st.form_submit_button(label="Add book")
 
@@ -345,9 +345,9 @@ elif st.session_state.current_view == "library":
                         save_library()
                         st.rerun()
     
-    if st.session_state.book_removed:
+    if st.session_state.book_remove:
         st.markdown("<div class = 'success_message'> book removed successfully!</div>", unsafe_allow_html=True)
-        st.session_state.book_removed = False
+        st.session_state.book_remove = False
 elif st.session_state.current_view == "search":
     st.markdown("<h2 class = 'sub-header'> search books</h2>", unsafe_allow_html=True)
 
@@ -391,7 +391,7 @@ elif st.session_state.current_view == "stats":
         with col2:
             st.metric("Book Read", stats['read_books'])
         with col3:
-            st.metric("Percentage Read", f"{stats['percentage_read'] :.1f}%")
+            st.metric("Percentage Read", f"{stats['percent_read'] :.1f}%")
         create_visulations()
 
         if stats['authors']:
