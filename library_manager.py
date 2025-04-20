@@ -351,7 +351,7 @@ elif st.session_state.current_view == "library":
 elif st.session_state.current_view == "search":
     st.markdown("<h2 class = 'sub-header'> search books</h2>", unsafe_allow_html=True)
 
-    search_by = st.selection("search by:", ["Title","Author","Genre"])
+    search_by = st.selectbox("search by:", ["Title","Author","Genre"])
     search_term = st.text_input("Enter search term!")
 
     if st.button("search", use_container_width=False):
