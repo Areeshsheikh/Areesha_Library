@@ -1,34 +1,34 @@
 [
   {
-    "title" : "python crash course",
-    "author" : "Eric matthes",
-    "publication_year" : 2019,
-    "genre" : "Programming",
-    "read_status" : false,
-    "added_data" : "03-22-2025   13:20:28"
+    "title": "python crash course",
+    "author": "Eric matthes",
+    "publication_year": 2019,
+    "genre": "Programming",
+    "read_status": false,
+    "added_date": "03-22-2025 13:20:28"
   },
   {
-    "title" : "Python Machine Learning",
-    "author" : "Sebastian Raschka and Vahid Mirjalili",
-    "publication_year" : 2015 (2nd edition: 2017),
-    "genre" : "Programming,
-    "read_status" : true,
-    "added_data" : "03-22-2025   13:40"
+    "title": "Python Machine Learning",
+    "author": "Sebastian Raschka and Vahid Mirjalili",
+    "publication_year": 2017,
+    "genre": "Programming",
+    "read_status": true,
+    "added_date": "03-22-2025 13:40"
   },
   {
-    "title" : "Python Cookbook",
-    "author" : "David Beazley and Brian K. Jones",
-    "publication_year" : 2013 (3rd edition),
-    "genre" : "Programming",
-    "read_status" : false,
-    "added_data" : "03-22-2025   14:05:02"
+    "title": "Python Cookbook",
+    "author": "David Beazley and Brian K. Jones",
+    "publication_year": 2013,
+    "genre": "Programming",
+    "read_status": false,
+    "added_date": "03-22-2025 14:05:02"
   },
   {
-    "title" : "Python for Data Analysis",
-    "author" : "Wes McKinney",
-    "publication_year" : 2017 (2nd edition),
-    "genre" : "Programming",
-    "read_status" : true,
-    "added_data" : "03-22-2025   14:20:18"
-  },
+    "title": "Python for Data Analysis",
+    "author": "Wes McKinney",
+    "publication_year": 2017,
+    "genre": "Programming",
+    "read_status": true,
+    "added_date": "03-22-2025 14:20:18"
+  }
 ]
